@@ -1,0 +1,16 @@
+[run]
+omit =
+  *apps.py,
+  *migrations/*,
+  *settings*,
+  *tests/*,
+  *venv*,
+  *urls.py,
+  *wsgi/*,
+  manage.py
+  zendesk_search/__init__.py
+  zendesk_search/wsgi.py
+  conftest.py
+  setup.py
+  wsgi.py
+  search/__init__.py
