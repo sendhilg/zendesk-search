@@ -162,4 +162,4 @@ def test_organization_search_raises_exception_for_invalid_search_term():
     with pytest.raises(InvalidSearchTermException) as e:
         search = Search(search_term='hello', search_value='web')
         search.search_organizations()
-    assert str(e.value) == 'Invalid search term "hello"'
+    assert str(e.value) == 'Invalid search term "hello" for organizations search.'

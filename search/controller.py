@@ -35,12 +35,12 @@ class AppController(object):
             elif self.input == '1':
                 self.process_search_options()
             elif self.input == '2':
-                self.search_columns_info()
+                self.display_searchable_fields()
             elif self.input == 'quit':
                 sys.exit(self.view.display_quit_message())
             else:
                 self.view.display_message(
-                    "Invalid input, please enter a valid command. To view command options type 'menu'."
+                    "\nInvalid input, please enter a valid command. To view command options type 'menu'."
                 )
             self.input = ""
 
@@ -48,10 +48,6 @@ class AppController(object):
         self.input = input()
 
     def process_search_options(self):
-        """
-        Search term and value by user's input
-        :return:
-        """
         self.view.display_search_options_message()
         while True:
             self.get_input()
@@ -67,11 +63,12 @@ class AppController(object):
                 break
             else:
                 self.view.display_message(
-                    "Invalid input, please enter a valid option 1, 2, 3 to continue search or 'quit' to exit"
+                    "\nInvalid input, please enter a valid option 1, 2, 3 to continue search or 'quit' to exit"
                 )
                 continue
 
         self.process_search_params()
+        self.view.display_menu()
         return
 
     def process_search_params(self):
@@ -97,21 +94,24 @@ class AppController(object):
             self.search_organizations()
 
     def search_organizations(self):
-        print(f'\nSearching organizations for {self.search_term} with a value of {self.search_value}')
+        print(f'\nSearching organizations for {self.search_term} with a value of {self.search_value} .....')
         try:
             qs = self.search.search_organizations()
         except InvalidSearchTermException as e:
             print(f'\n{e}\n')
+            self.view.display_menu()
             return
 
         if not qs:
             print(f'\nNo results found for search term {self.search_term} and search value {self.search_value}')
+            self.view.display_menu()
         else:
             for organization in qs:
                 print(organization)
+        return
 
     def search_tickets(self):
-        print(f'\nSearching tickets for {self.search_term} with a value of {self.search_value}')
+        print(f'\nSearching tickets for {self.search_term} with a value of {self.search_value} .....')
         try:
             qs = self.search.search_tickets()
         except InvalidSearchTermException as e:
@@ -123,9 +123,10 @@ class AppController(object):
         else:
             for ticket in qs:
                 print(ticket)
+        return
 
     def search_users(self):
-        print(f'\nSearching users for {self.search_term} with a value of {self.search_value}')
+        print(f'\nSearching users for {self.search_term} with a value of {self.search_value} .....')
         try:
             qs = self.search.search_users()
         except InvalidSearchTermException as e:
@@ -137,18 +138,27 @@ class AppController(object):
         else:
             for user in qs:
                 print(user)
+        return
 
-    def search_columns_info(self):
+    def display_searchable_fields(self):
+        self.display_users_searchable_fields()
+        self.display_tickets_searchable_fields()
+        self.display_organizations_searchable_fields()
+        self.view.display_menu()
+
+    def display_users_searchable_fields(self):
         print('\n-----------------------------------------------------------')
         print('Search Users with:\n')
         for f in User._meta.fields:
             print(f'{f.name}')
 
+    def display_tickets_searchable_fields(self):
         print('\n-----------------------------------------------------------')
         print('Search Tickets with:\n')
         for f in Ticket._meta.fields:
             print(f'{f.name}')
 
+    def display_organizations_searchable_fields(self):
         print('\n-----------------------------------------------------------')
         print('Search Organizations with:\n')
         for f in Organization._meta.fields:

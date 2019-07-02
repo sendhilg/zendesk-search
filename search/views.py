@@ -1,7 +1,5 @@
 from django.core.exceptions import FieldError
-
 from .models import Organization, Ticket, User
-
 
 class InvalidSearchTermException(Exception):
     pass
@@ -21,7 +19,7 @@ class Search(object):
             qs = Organization.objects.filter(**kwargs).prefetch_related('users', 'tickets')
         except FieldError:
             raise InvalidSearchTermException(
-                f'Invalid search term "{self.search_term}"'
+                f'Invalid search term "{self.search_term}" for organizations search.'
             )
         return qs
 
@@ -47,7 +45,7 @@ class Search(object):
                 )
         except FieldError:
             raise InvalidSearchTermException(
-                f'Invalid search term "{self.search_term}"'
+                f'Invalid search term "{self.search_term}" for users search.'
             )
         return qs
 
@@ -71,6 +69,6 @@ class Search(object):
             ).select_related('organization_id', 'submitter_id', 'assignee_id')
         except FieldError:
             raise InvalidSearchTermException(
-                f'Invalid search term "{self.search_term}"'
+                f'Invalid search term "{self.search_term}" for tickets search.'
             )
         return qs

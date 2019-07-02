@@ -203,3 +203,71 @@ def test_search_tickets_for_invalid_search_term(capsys):
     captured = capsys.readouterr()
 
     assert f'Invalid search term "{controller.search_term}"' in captured.out
+
+
+def test_display_organizations_searchable_fields(capsys):
+    controller = AppController()
+    controller.display_organizations_searchable_fields()
+
+    captured = capsys.readouterr()
+
+    assert '_id' in captured.out
+    assert 'url' in captured.out
+    assert 'external_id' in captured.out
+    assert 'name' in captured.out
+    assert 'domain_names' in captured.out
+    assert 'created_at' in captured.out
+    assert 'details' in captured.out
+    assert 'shared_tickets' in captured.out
+    assert 'tags' in captured.out
+
+
+def test_display_users_searchable_fields(capsys):
+    controller = AppController()
+    controller.display_users_searchable_fields()
+
+    captured = capsys.readouterr()
+
+    assert '_id' in captured.out
+    assert 'url' in captured.out
+    assert 'external_id' in captured.out
+    assert 'name' in captured.out
+    assert 'alias' in captured.out
+    assert 'created_at' in captured.out
+    assert 'active' in captured.out
+    assert 'verified' in captured.out
+    assert 'shared' in captured.out
+    assert 'locale' in captured.out
+    assert 'timezone' in captured.out
+    assert 'last_login_at' in captured.out
+    assert 'email' in captured.out
+    assert 'phone' in captured.out
+    assert 'signature' in captured.out
+    assert 'organization_id' in captured.out
+    assert 'tags' in captured.out
+    assert 'suspended' in captured.out
+    assert 'role' in captured.out
+
+
+def test_display_tickets_searchable_fields(capsys):
+    controller = AppController()
+    controller.display_tickets_searchable_fields()
+
+    captured = capsys.readouterr()
+
+    assert '_id' in captured.out
+    assert 'url' in captured.out
+    assert 'external_id' in captured.out
+    assert 'created_at' in captured.out
+    assert 'type' in captured.out
+    assert 'subject' in captured.out
+    assert 'description' in captured.out
+    assert 'priority' in captured.out
+    assert 'status' in captured.out
+    assert 'submitter_id' in captured.out
+    assert 'assignee_id' in captured.out
+    assert 'organization_id' in captured.out
+    assert 'tags' in captured.out
+    assert 'has_incidents' in captured.out
+    assert 'due_at' in captured.out
+    assert 'via' in captured.out

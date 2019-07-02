@@ -89,7 +89,7 @@ def test_ticket_search_raises_exception_for_invalid_search_term():
     with pytest.raises(InvalidSearchTermException) as e:
         search = Search(search_term='hello', search_value='web')
         search.search_tickets()
-    assert str(e.value) == 'Invalid search term "hello"'
+    assert str(e.value) == 'Invalid search term "hello" for tickets search.'
 
 
 @pytest.mark.django_db
