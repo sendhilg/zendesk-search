@@ -16,15 +16,29 @@ class Command(BaseCommand):
 
 class LoadData(object):
     def run(self):
+        print('\n Cleaning data before the loading...')
         Ticket.objects.all().delete()
         User.objects.all().delete()
         Organization.objects.all().delete()
         
+        self.load_organizations_data()
+        self.load_users_data()
+        self.load_tickets_data()
+
+
+    def load_organizations_data(self):
+        print('\n Loading organizations data...')
+
         with open('organizations.json', encoding='utf-8') as data_file:
             json_data = json.loads(data_file.read())
             Organization.objects.bulk_create(
                 [Organization(**row) for row in json_data]
             )
+
+        print('\n Organizations data loading successful.')
+        
+    def load_users_data(self):
+        print('\n Loading users data...')
 
         with open('users.json', encoding='utf-8') as data_file:
             json_data = json.loads(data_file.read())
@@ -36,6 +50,11 @@ class LoadData(object):
                 user_data['organization_id'] = organization_id
                 user = User(**user_data)
                 user.save()
+                
+        print('\n Users data loading successful.')
+
+    def load_tickets_data(self):
+        print('\n Loading tickets data...')
 
         with open('tickets.json', encoding='utf-8') as data_file:
             json_data = json.loads(data_file.read())
@@ -57,3 +76,5 @@ class LoadData(object):
                 ticket_data['assignee_id'] = assignee_id
                 ticket = Ticket(**ticket_data)
                 ticket.save()
+                
+        print('\n Tickets data loading successful.')

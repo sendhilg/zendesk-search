@@ -20,8 +20,8 @@ class AppController(object):
                 Ticket.objects.count() == 0
         ):
             print(
-                'Cannot search. Data is not loaded.\nLoad data by running the below command:\n'
-                'python manage.py load_data'
+                '\nExiting search as data is not loaded.\n\nLoad data by running the below command:\n'
+                'python manage.py load_data\n'
             )
             sys.exit()
 
