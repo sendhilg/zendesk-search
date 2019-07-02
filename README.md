@@ -26,24 +26,24 @@ Change into the project directory 'zendesk-search':
 
 Setup a virtual environment for the application using virtualenv tool:
 
-virtualenv is a tool to create isolated Python environments. virtualenv creates a folder which contains all the necessary executables to use the packages that a Python application would need.
+    virtualenv is a tool to create isolated Python environments. virtualenv creates a folder which contains all the necessary executables to use the packages that a Python application would need.
 
     On windows (GitBash Terminal):
 
         $ pip install virtualenv
         $ python -m venv zendesk_venv
         $ source ./zendesk_venv/Scripts/activate
-    
-    To verify that the virtual environment is activated, run the below command and 
-    check that the source for pip (python package manager) is the vitual environment i.e 'zendek_venv':
-
-        $ pip -V
 
     On Linux systems (Bash Terminal):
 
         $ pip install --user virtualenv
         $ python -m venv zendesk_venv
         $ source ./zendesk_venv/bin/activate
+
+    To verify that the virtual environment is activated, run the below command and 
+    check that the source for pip (python package manager) is the vitual environment i.e 'zendek_venv':
+
+        $ pip -V
 
 After the virtual environment is created, use the package manager 'pip' to install 
 requirements for the application.
