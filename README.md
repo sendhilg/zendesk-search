@@ -34,8 +34,8 @@ virtualenv is a tool to create isolated Python environments. virtualenv creates 
         $ python -m venv zendesk_venv
         $ source ./zendesk_venv/Scripts/activate
     
-    To verify that the virtualenv is activated, run the below command and 
-    check that the package source is the vitualenv i.e 'zendek_venv':
+    To verify that the virtual environment is activated, run the below command and 
+    check that the source for pip (python package manager) is the vitual environment i.e 'zendek_venv':
 
         $ pip -V
 
@@ -70,7 +70,8 @@ management command at the project directory to search for data:
 
     $ python manage.py search
 
-The search supports below: 
+The search supports below:
+1. Full matching search
 1. Case insensitive search (E.g. searching for 'megacorp' will display both 'megacorp' and 'Megacorp')
 2. Substring search (E.g. searching for 'mega' will display 'mega', 'megacorp' and 'Megacorp')
 
