@@ -45,11 +45,16 @@ virtualenv is a tool to create isolated Python environments. virtualenv creates 
         $ python -m venv zendesk_venv
         $ source ./zendesk_venv/bin/activate
 
+After the virtual environment is created, use the package manager 'pip' to install 
+requirements for the application.
+
+    $ pip install -r requirements.txt
+
 
 ## Creating tables and loading data for search:
 The project uses [Django](https://www.djangoproject.com/) framework to create table in a default SQLite Database. Django ORM is used to load data from json files.
 
-    Create tables by running the migrate command at the project direcotry:
+    Create tables by running the migrate command at the project directory:
 
         $ python manage.py migrate
 
@@ -64,6 +69,11 @@ After the data is loaded successfully by using the load_data command, run the be
 management command at the project directory to search for data:
 
     $ python manage.py search
+
+The search supports below: 
+1. Case insensitive search (E.g. searching for 'megacorp' will display both 'megacorp' and 'Megacorp')
+2. Substring search (E.g. searching for 'mega' will display 'mega', 'megacorp' and 'Megacorp')
+
 
 ### Example
 ```
