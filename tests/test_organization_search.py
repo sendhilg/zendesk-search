@@ -1,7 +1,6 @@
 import pytest
 
 from search.factory import OrganizationFactory, TicketFactory, UserFactory
-from search.models import Organization
 from search.views import InvalidSearchTermException, Search
 
 

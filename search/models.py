@@ -17,7 +17,7 @@ class Organization(models.Model):
         for user in self.users.all():
             user_representation = (
                 f'user_id                       {user._id}\n'
-                f'user_name                     {user.name}\n'              
+                f'user_name                     {user.name}\n'
             )
 
         ticket_representation = ''
@@ -84,7 +84,7 @@ class User(models.Model):
                 f'submitted_ticket_subject      {ticket.subject}\n'
             )
 
-        assigned_ticket_representation = ''  
+        assigned_ticket_representation = ''
         for ticket in self.assigned_tickets.all():
             assigned_ticket_representation = (
                 f'assigned_ticket_id            {ticket._id}\n'
@@ -167,7 +167,7 @@ class Ticket(models.Model):
                 f'submitter_name                {self.submitter_id.name}\n'
             )
 
-        assignee_representation = '' 
+        assignee_representation = ''
         if self.assignee_id:
             assignee_representation = (
                 f'assignee_id                   {self.assignee_id._id}\n'

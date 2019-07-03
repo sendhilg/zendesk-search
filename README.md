@@ -123,6 +123,6 @@ ticket_subject                A Drama in Bulgaria
 ## Unit Tests
 
 ### Running unit tests
-Run the below command at the project directory to run tests with code coverage.
+Run the below commands at the project directory to run tests with code coverage.
 
-    $  pytest --cov=search --cov-report=term --cov-report=html --junitxml=unittest-report/xml/results.xml
+    $  pytest --cov=search --cov-report=term --cov-report=html --cov-fail-under=75 --no-cov-on-fail --junitxml=unittest-report/xml/results.xml

@@ -1,8 +1,11 @@
 from django.core.exceptions import FieldError
+
 from .models import Organization, Ticket, User
+
 
 class InvalidSearchTermException(Exception):
     pass
+
 
 class Search(object):
 
@@ -23,10 +26,9 @@ class Search(object):
             )
         return qs
 
-
     def search_users(self):
         self.model_search_term = self.search_term
-        
+
         if self.search_term == 'organization_id':
             self.model_search_term = 'organization_id___id'
 
@@ -51,7 +53,7 @@ class Search(object):
 
     def search_tickets(self):
         self.model_search_term = self.search_term
-        
+
         if self.search_term == 'organization_id':
             self.model_search_term = 'organization_id___id'
         if self.search_term == 'submitter_id':

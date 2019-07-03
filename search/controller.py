@@ -117,7 +117,7 @@ class AppController(object):
         except InvalidSearchTermException as e:
             print(f'\n{e}\n')
             return
-        
+
         if not qs:
             print(f'\nNo results found for search term {self.search_term} and search value {self.search_value}')
         else:
@@ -132,7 +132,7 @@ class AppController(object):
         except InvalidSearchTermException as e:
             print(f'\n{e}\n')
             return
-        
+
         if not qs:
             print(f'\nNo results found for search term {self.search_term} and search value {self.search_value}')
         else:
@@ -177,7 +177,6 @@ class AppView(object):
             "\nSelect from the below options. Type 'quit' to exit the application, "
             "'menu' to display the main menu at any time."
         )
-        
 
     def display_message(self, message):
         print(message)
